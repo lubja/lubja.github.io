@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Kas Jaan Martinson on pensionil?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<div class="container">
+    <img src="https://images.delfi.ee/media-api-image-cropper/v1/74b47810-ba5a-11ec-8522-0b98de5ff8dc.jpg?w=1000&h=630" alt="Image" />
+    <p id="text">First line of text</p>
+    <p id="countdown">Second line of text</p>
+    <script>
+        function updateCountdown() {
+            // Set the target date
+            const targetDate = new Date('July 1, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+
+            // Calculate the difference
+            const timeDifference = targetDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            // Display the result
+            if (days > 0 || hours > 0 || minutes > 0 || seconds > 0) {
+                document.getElementById("countdown").innerText =
+                    `Pensionini on jäänud ${days} päeva, ${hours} tundi, ${minutes} minutit, ${seconds} sekundit`;
+                document.getElementById("text").innerText = 'Jaan ei ole veel pensionil 😢'
+            } else {
+                triggerConfetti();
+                document.getElementById("countdown").innerText =
+                    `Jaan on olnud pensionil ${Math.abs(days)} päeva, ${Math.abs(hours)} tundi, ${Math.abs(minutes)} minutit, ${Math.abs(seconds)} sekundit`;
+                document.getElementById("text").innerText = 'Jaan on ametlikult pensionär. Palju õnne Jaanile! 🎉🎉🎉🎉🎉'
+            }
+
+            // Update the countdown every second
+            setTimeout(updateCountdown, 1000);
+        }
+
+        // Function to trigger confetti
+        function triggerConfetti() {
+            window.confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        // Start the countdown
+        updateCountdown();
+    </script>
+</div>
+</body>
+</html>
