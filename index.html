@@ -5,40 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kas Jaan Martinson on pensionil?</title>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            text-align: center;
-            padding: 20px;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+    * {
+        box-sizing: border-box; /* Include padding and border in element width/height */
+    }
+    html, body {
+        margin: 0; /* Remove default margin */
+        padding: 0; /* Remove default padding */
+        width: 100%; /* Ensure body fits within the viewport */
+        height: 100%; /* Ensure body fits within the viewport */
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        text-align: center;
+        padding: 20px;
+        width: 100%; /* Prevent container from exceeding screen width */
+    }
+    img {
+        max-width: 100%; /* Ensure image scales within its container */
+        height: auto; /* Maintain aspect ratio */
+    }
+    #text, #countdown {
+        font-size: 1.5em;
+    }
+
+    /* Adjust font size for smaller screens */
+    @media (max-width: 768px) {
         #text, #countdown {
-            font-size: 1.5em;
+            font-size: 1.2em;
         }
+    }
 
-        /* Adjust font size for smaller screens */
-        @media (max-width: 768px) {
-            #text, #countdown {
-                font-size: 1.2em;
-            }
+    @media (max-width: 480px) {
+        #text, #countdown {
+            font-size: 1em;
         }
-
-        @media (max-width: 480px) {
-            #text, #countdown {
-                font-size: 1em;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
